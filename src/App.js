@@ -19,6 +19,12 @@ function App() {
                    ],
               currentTask:""});
   };
+  const removeTask = (id)=>{
+    setTasks({
+      ...tasks,
+      list:tasks.list.filter((item)=>item.id!==id)
+    });
+  };
   return (
     <div>
       <h1 className="App">
@@ -37,7 +43,14 @@ function App() {
         <h3>Tasks</h3>
         <ul>
           {
-            tasks.list.map((item)=><li key={item.id}>{item.task}</li>)
+            tasks.list.map((item)=>{
+              return (
+                <li key={item.id}>
+                  {item.task}
+                  <button onClick={()=>removeTask(item.id)}>X</button>
+                </li>
+                );
+            })
           }
         </ul>
       </div>
